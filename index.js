@@ -19,18 +19,19 @@ app.listen(app.get('port'), function() {
 });
 
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
+var pool  = mysql.createPool({
+  connectionLimit : 10,
   host     : 'us-cdbr-iron-east-03.cleardb.net',
   user     : 'ba81d2773e784b',
   password : 'ac751f1c5bba42a',
   database : 'heroku_b0c0e2e242faeba'
 });
 
-connection.connect();
+pool.connect();
 
 app.post('/score', function(req, res) {
 	var query = "INSERT INTO users (steps) VALUES (" + req.body.score + ")";
-	connection.query('UPDATE users SET ? WHERE ?', [{ steps: req.body.score }, { id: 1 }])
+	pool.query('UPDATE users SET ? WHERE ?', [{ steps: req.body.score }, { id: 1 }])
 	res.send("updated")
 	console.log("Request came")
 	console.log(req.body)
