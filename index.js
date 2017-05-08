@@ -21,9 +21,9 @@ app.listen(app.get('port'), function() {
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'us-cdbr-iron-east-03.cleardb.net',
-  user     : 'b8113da7ef3f58',
-  password : '2f4cd18b',
-  database : 'heroku_2ddbb6dcb252ea7'
+  user     : 'ba81d2773e784b',
+  password : '19c00907',
+  database : 'heroku_b0c0e2e242faeba'
 });
 
 connection.connect();
