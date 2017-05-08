@@ -27,8 +27,6 @@ var pool  = mysql.createPool({
   database : 'heroku_b0c0e2e242faeba'
 });
 
-pool.connect();
-
 app.post('/score', function(req, res) {
 	var query = "INSERT INTO users (steps) VALUES (" + req.body.score + ")";
 	pool.query('UPDATE users SET ? WHERE ?', [{ steps: req.body.score }, { id: 1 }])
