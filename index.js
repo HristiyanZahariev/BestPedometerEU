@@ -11,9 +11,6 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-  response.send("hello")
-});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
@@ -26,6 +23,11 @@ var pool  = mysql.createPool({
   user     : 'ba81d2773e784b',
   password : 'ac751f1c5bba42a',
   database : 'heroku_b0c0e2e242faeba'
+});
+
+app.get('/', function(request, response) {
+  res.send(pool.query('SELECT * FROM users WHERE ?', [{id: 1}]));
+
 });
 
 app.post('/score', function(req, res) {
