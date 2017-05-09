@@ -28,7 +28,7 @@ var pool  = mysql.createPool({
 app.get('/', function(request, response) {
   pool.query('SELECT * FROM users WHERE ?', [{id: 1}], function (err, result) {
     if (err) throw err;
-    res.send("You have made " + result[0].steps + "steps");
+    response.send("You have made " + result[0].steps + "steps");
   });
 
 });
